@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- Nifty output settings -->
+    <xsl:strip-space elements="*"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
+
+    <!-- We don't use a theme at all, just rules -->
+    <notheme />
+
+    <!-- Big hammer for proof of concept -->
+    <drop css:content="body" />
+
+</rules>
