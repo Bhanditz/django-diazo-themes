@@ -5,6 +5,7 @@ VERSION = '0.1'
 REQUIREMENTS = (
     'setuptools>=0.6c11',
     'django-diazo>=0.3',
+    'django_user_agents'
 )
 TEST_REQUIREMENTS = (
 )

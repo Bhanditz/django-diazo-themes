@@ -11,7 +11,8 @@
     <!-- We don't use a theme at all, just rules -->
     <notheme />
 
-    <!-- Big hammer for proof of concept -->
-    <drop css:content="body" />
+    <!-- is this a 'dinosaur', or unsupported browser ? -->
+    <xsl:variable name="dinosaur" select="//html[contains(@class, 'diazo-ua-deprecated')]" />
+    <drop css:content="body" if="$dinosaur"/>
 
 </rules>
