@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+      
+      
+      <before css:theme-children="html head" css:content="head link"/>
+
+   
+      <replace css:theme-children="main, #content, #main-content" css:content="nav.wrapper-preview-menu, #content" />
+      
+     <!-- get script tags in body, w/o duplicating the ones in #content -->
+      <after css:theme-children="body" css:content="body > script, .window-wrap > script" />   
+      
+    <!-- insert nav elements  from Open edX into theme nav -->
+      <before css:content-children=".course-header " css:theme-children="div.header-menu ul#nav" />      
+      <after css:content="header#global-navigation ol.nav-global li" css:theme-children="div.header-menu ul#nav" />
+
+
+      <!-- ... except the dropdown user menu which we have to treat a little differently -->
+    <after css:content="header#global-navigation ol.user" css:theme-children="div.header-menu ul#nav" />  
+      
+      <!-- make sure to put the header global nav CSS class on the theme's nav, so dropdown styling works -->
+      <merge attributes="class" css:theme="div.header-menu" css:content="header#global-navigation" />
+ 
+   
+</rules>

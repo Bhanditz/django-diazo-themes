@@ -9,10 +9,19 @@
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
 
     <!-- We don't use a theme at all, just rules -->
-    <notheme />
+      <notheme/>
 
-    <!-- is this a 'dinosaur', or unsupported browser ? -->
-    <xsl:variable name="dinosaur" select="//html[contains(@class, 'diazo-ua-deprecated')]" />
-    <drop css:content="body" if="$dinosaur"/>
+    <xsl:variable name="ua-downgrade" select="//html/@data-ua-downgrade" />  
 
+    <!-- drop the sequence tab navigation, but not the prev/next buttons -->
+    <drop css:content=".sequence-nav nav" if="contains($ua-downgrade, 'courseware-tabs')"/> 
+
+    <!-- make sure to hide inactive sequence contents  in IE9  -->
+    <before css:content-children=".seq_contents" if="contains($ua-downgrade, 'courseware-tabs')" method="raw">
+      <xsl:attribute name="style">display:none</xsl:attribute>
+    </before>
+
+   
+        
+  
 </rules>

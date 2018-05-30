@@ -1,1 +1,2 @@
 recursive-include django_diazo_themes/openedx-lite/static *
+recursive-include django_diazo_themes/learnedu/static *

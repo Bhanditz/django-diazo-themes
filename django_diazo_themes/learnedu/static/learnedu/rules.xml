@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <!-- Nifty output settings -->
+    <xsl:strip-space elements="*"/>
+    <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
+
+    <!-- You don't have to use a theme at all.  You can just use rules -->
+    <!-- <notheme /> -->
+    
+       
+      <theme href="http://whitehouse.gov" />
+      
+   <!--  COMMON RULES: LMS AND CMS -->
+      
+    <!-- merge classes on body tag -->
+    <merge attributes="class" css:theme="body" css:content="body" />   
+     <!-- copy all scripts from content head -->
+    <after css:theme-children="html head" css:content="head script"/>
+        
+    <!-- drop some parts from the theme we don't want to use -->
+    <drop css:theme="div.topbar" />
+    <drop css:theme=".header-menu nav div.button" />    
+    <!-- ... alter the link text -->
+    <!-- drop theme 'home' sub nav -->
+    <drop theme="//ul[@id='nav']/li[1]/ul" />
+    <!-- ... alter the link href -->
+    <replace css:if-content="ol.authenticated"  theme="//ul[@id='nav']/li[1]/a" ><a href="/">Dashboard</a></replace>
+    <replace css:if-not-content="ol.authenticated"  theme="//ul[@id='nav']/li[1]/a" ><a href="/">Online Courses Home</a></replace>
+    <!-- drop active class on navigation li's -->
+    <drop attributes="class" css:theme="ul#nav li.active" />
+    <!-- drop theme 'courses' nav link -->
+    <drop theme="//ul[@id='nav']/li[3]" />      
+
+      
+      
+    <!-- LMS-specific rules -->  
+    <rules css:if-content=".main-container"><!-- class only exists in LMS -->
+      <xi:include href="lms.xml" />    
+    </rules>
+      
+      
+    <!-- CMS-specific rules-->  
+    <rules css:if-content=".wrapper-view"><!-- class only exists in Studio -->
+      <xi:include href="cms.xml" />    
+    </rules>  
+      
+   
+      
+ 
+   
+</rules>
